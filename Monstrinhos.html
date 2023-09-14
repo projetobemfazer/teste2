@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crie seu Monstrinho</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            max-width: 300px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: row; /* Alteramos a direção para horizontal */
+            margin: 10px;
+        }
+
+        .option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .option img {
+            max-width: 150px;
+            max-height: 150px;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            margin-top: 5px;
+        }
+
+        #criar {
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        #criar:hover {
+            background-color: #0056b3;
+        }
+
+        #visualizar {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        #visualizar:hover {
+            background-color: #45a049;
+        }
+
+        .option-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Adicionamos margem entre as opções de corpo e olhos */
+        .options:nth-child(odd) {
+            margin-right: 20px;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        /* Estilize a imagem na nova janela */
+        .resultado-imagem {
+            max-width: 100%; /* Defina o tamanho máximo como 100% para ajustar automaticamente */
+            height: auto; /* Mantém a proporção da imagem */
+            margin-bottom: 10px;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+        }
+
+        /* Estilo para o popup */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        #popup-content {
+            background-color: white;
+            max-width: 80%;
+            max-height: 80%;
+            margin: 10% auto;
+            padding: 20px;
+            overflow: auto;
+            position: relative;
+        }
+
+        #monstrinho-imagem {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #fechar-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #fechar-popup:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Crie seu Monstrinho</h1>
+    <div class="container">
+        <!-- Adicionando campos para o nome, telefone e nome do monstrinho -->
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        <div class="form-group">
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" name="telefone" required>
+        </div>
+        <div class="form-group">
+            <label for="nomeMonstrinho">Nome do Monstrinho:</label>
+            <input type="text" id="nomeMonstrinho" name="nomeMonstrinho" required>
+        </div>
+
+        <div class="options">
+            <div class="option">
+                <label>
+                    <img src="https://projetobemfazer.github.io/createmonsters/M1.jpeg" alt="Corpo 1">
+                    <input type="radio" name="body" value="M1">
+                </label>
+            </div>
+            <div class="option">
+                <label>
+                    <img src="https://projetobemfazer.github.io/createmonsters/M2.jpeg" alt="Corpo 2">
+                    <input type="radio" name="body" value="M2">
+                </label>
+            </div>
+            <div class="option">
+                <label>
+                    <img src="https://projetobemfazer.github.io/createmonsters/M2.jpeg" alt="Corpo 3">
+                    <input type="radio" name="body" value="M3">
+                </label>
+            </div>
+        </div>
+        <div class="options">
+            <div class="option">
+                <label>
+                    <img src="https://projetobemfazer.github.io/createmonsters/O1.jpeg" alt="Olhos 1">
+                    <input type="radio" name="eyes" value="O1">
+                </label>
+            </div>
+            <div class="option">
+                <label>
+                    <img src="https://projetobemfazer.github.io/createmonsters/O2.jpeg" alt="Olhos 2">
+                    <input type="radio" name="eyes" value="O2">
+                </label>
+            </div>
+            <div class="option">
+                <label>
+                    <img src="https://projetobemfazer.github.io/createmonsters/O3.jpeg" alt="Olhos 3">
+                    <input type="radio" name="eyes" value="O3">
+                </label>
+            </div>
+        </div>
+        <button id="criar">Criar</button>
+        <button id="visualizar">Visualizar Meu Monstrinho</button> <!-- Botão adicional -->
+        <div id="resultado"></div>
+    </div>
+
+    <!-- Popup para exibir a imagem do monstrinho -->
+    <div id="popup">
+        <div id="popup-content">
+            <img id="monstrinho-imagem" class="resultado-imagem" alt="Monstrinho">
+            <button id="fechar-popup">Fechar</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+    <script>
+        document.getElementById("criar").addEventListener("click", function() {
+            // Obtém os valores inseridos pelo usuário
+            var nome = document.getElementById("nome").value;
+            var telefone = document.getElementById("telefone").value;
+            var nomeMonstrinho = document.getElementById("nomeMonstrinho").value;
+
+            // Obtém os valores selecionados
+            var selectedBody = document.querySelector('input[name="body"]:checked');
+            var selectedEyes = document.querySelector('input[name="eyes"]:checked');
+
+            // Verifica se todos os campos foram preenchidos
+            if (nome && telefone && nomeMonstrinho && selectedBody && selectedEyes) {
+                // Concatena os valores com emojis diretamente
+                var mensagemWhatsApp = "🦄 **Certidão de Doação** 🦄\n\n**Nome do doador:** " + nome + "\n**Nome do monstrinho:** " + nomeMonstrinho + "\n**RG do Monstrinho:** " + selectedBody.value + selectedEyes.value + "\n\n**Obrigado!**";
+
+                // Formate o número de telefone (removendo caracteres não numéricos)
+                var numeroWhatsApp = "16993455523".replace(/\D/g, '');
+
+                // Crie o link para o WhatsApp com a mensagem pré-preenchida
+                var linkWhatsApp = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagemWhatsApp);
+
+                // Abra uma nova janela com o link do WhatsApp
+                window.open(linkWhatsApp, '_blank');
+
+                // Limpa o formulário após a abertura do WhatsApp
+                document.getElementById("nome").value = "";
+                document.getElementById("telefone").value = "";
+                document.getElementById("nomeMonstrinho").value = "";
+                selectedBody.checked = false;
+                selectedEyes.checked = false;
+
+                // Exiba uma mensagem de sucesso para o usuário
+                document.getElementById("resultado").innerText = "Dados enviados para o WhatsApp!";
+            } else {
+                alert("Por favor, preencha todos os campos e selecione um corpo e olhos antes de criar seu monstrinho.");
+            }
+        });
+
+        // Adicione um evento de clique para o botão "Visualizar Meu Monstrinho"
+        document.getElementById("visualizar").addEventListener("click", function() {
+            // Obtenha os valores selecionados pelo usuário
+            var selectedBody = document.querySelector('input[name="body"]:checked').value;
+            var selectedEyes = document.querySelector('input[name="eyes"]:checked').value;
+
+            // Construa o nome do arquivo da imagem com base nas seleções
+            var nomeImagemMonstrinho = selectedBody + selectedEyes + ".jpeg";
+
+            // Construa a URL completa da imagem
+            var urlImagemMonstrinho = "https://projetobemfazer.github.io/createmonsters/" + nomeImagemMonstrinho;
+
+            // Exiba a imagem em um popup
+            var popup = document.getElementById("popup");
+            var monstrinhoImagemElement = document.getElementById("monstrinho-imagem");
+            monstrinhoImagemElement.src = urlImagemMonstrinho; // Define a propriedade 'src' com a URL da imagem
+            popup.style.display = "block";
+
+            // Adicione um evento de clique para fechar o popup
+            document.getElementById("fechar-popup").addEventListener("click", function() {
+                popup.style.display = "none";
+            });
+        });
+    </script>
+</body>
+</html>
